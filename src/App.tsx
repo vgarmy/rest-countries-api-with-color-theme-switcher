@@ -21,13 +21,13 @@ function App() {
   return (
     <div>
       <header className="w-full bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)] drop-shadow-md">
-        <div className="flex justify-between items-center px-6 h-16" style={{ maxWidth: '1440px', margin: '0 auto' }}>
+        <div className="flex justify-between items-center px-10 md:px-0 h-20" style={{ maxWidth: '1440px', margin: '0 auto' }}>
           <h2 className="text-2xl font-extrabold text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]">
             Where in the world!
           </h2>
           <button
             onClick={() => setDarkMode(prev => !prev)}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)] cursor-pointer"
           >
             {darkMode ? (
               <>
@@ -48,7 +48,7 @@ function App() {
 
 
       {/* Main centrerat med flex */}
-      <main className="flex justify-center w-full px-6 py-6">
+      <main className="flex justify-center w-full px-10 py-6">
         <div className="w-full" style={{ maxWidth: '1440px' }}>
           <Routes>
             <Route path="/" element={<Countries />} />

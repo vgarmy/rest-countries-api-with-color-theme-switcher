@@ -123,24 +123,24 @@ function Countries() {
     setRegion(e.target.value);
 
   // UI states
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return <span></span>;
   if (error)
     return (
       <div className="p-6 text-red-600">
         Failed to load countries: {error}
       </div>
     );
-  if (!countries.length) return <div className="p-6" />;
+  if (!countries.length) return <span></span>;
 
   return (
     <>
       {/* Controls */}
-      <div className="p-6 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-10 mb-20 flex flex-wrap items-center justify-between gap-4">
         {/* Search */}
-        <label className="w-full max-w-[480px] relative block">
+        <label className="w-full max-w-[480px] relative block" >
           <span className="sr-only">Search for country</span>
           <FiSearch
-            className="pointer-events-none absolute left-5 inset-y-0 my-auto h-5 w-5 text-gray-400"
+            className="pointer-events-none absolute left-5 inset-y-0 my-auto h-5 w-5 text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]"
             aria-hidden="true"
           />
           <input
@@ -148,7 +148,7 @@ function Countries() {
             placeholder="Search for country..."
             value={rawQuery}
             onChange={onSearchChange}
-            className="w-full pl-12 pr-4 py-5 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-12 pr-4 py-5 rounded shadow-lg bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)] focus:outline-none placeholder-[var(--Grey-950-Light-Mode-Text)] dark:placeholder-[var(--Dark-Mode-Text)]"
             aria-label="Search for country"
           />
         </label>
@@ -156,14 +156,14 @@ function Countries() {
         {/* Region filter */}
         <div className="w-full sm:w-auto relative">
           <FiChevronDown
-            className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 mr-4"
+            className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)] mr-4"
             aria-hidden="true"
           />
 
           <select
             value={region} // region måste vara "" initialt för placeholdern ska visas
             onChange={onRegionChange}
-            className="w-56 pl-5 py-5 rounded shadow-md border border-gray-200 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-56 pl-5 py-5 rounded shadow-lg text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)] appearance-none bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)] focus:outline-none"
             aria-label="Filter by region"
           >
             {/* Placeholder som visas först */}
@@ -181,34 +181,34 @@ function Countries() {
       </div>
 
       {/* Grid */}
-      <div className="p-6">
+      <div>
         {filteredCountries.length === 0 ? (
-          <div className="text-gray-600">
+          <div className="text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)]">
             No countries found
             {region !== "all" ? ` in ${region}` : ""} for “{query}”.
           </div>
         ) : (
-          <div className="flex flex-wrap justify-between gap-x-10 gap-y-[70px]">
+          <div className="flex flex-wrap justify-between gap-x-10 gap-y-[70px] text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)]">
             {filteredCountries.map((country) => (
               <Link
                 key={country.cca3}
                 to={`/country/${country.cca3}`}
                 className="block"
               >
-                <div className="rounded-lg overflow-hidden shadow-lg hover:scale-105 transition w-[265px] bg-white">
+                <div className="rounded-lg overflow-hidden shadow-lg hover:scale-105 transition w-100 md:w-[265px] bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)]">
                   <img
                     src={country.flags?.png || country.flags?.svg || ""}
                     alt={
                       country.flags?.alt || `${country.name.common} flag`
                     }
-                    className="w-full h-[160px] object-cover"
+                    className="w-full h-[225px] md:h-[160px] object-cover"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).style.display =
                         "none";
                     }}
                   />
                   <div className="px-6 pt-6 pb-10">
-                    <h3 className="font-black text-lg mb-3">
+                    <h3 className="text-lg mb-3">
                       {country.name.common}
                     </h3>
                     <p className="text-sm mb-1">
