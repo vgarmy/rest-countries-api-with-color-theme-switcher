@@ -22,7 +22,7 @@ function App() {
     <div>
       <header className="w-full bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)] drop-shadow-md">
         <div className="flex justify-between items-center px-6 h-16" style={{ maxWidth: '1440px', margin: '0 auto' }}>
-          <h2 className="text-xl font-semibold text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]">
+          <h2 className="text-2xl font-extrabold text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]">
             Where in the world!
           </h2>
           <button
