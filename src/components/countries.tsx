@@ -204,7 +204,7 @@ function Countries() {
             <img
               src={country.flags?.png || country.flags?.svg || ""}
               alt={country.flags?.alt || `${country.name.common} flag`}
-              className="w-full h-[225px] md:h-[160px] object-cover"
+              className="w-full h-[250px] md:h-[200px] object-cover"
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).style.display = "none";
               }}
