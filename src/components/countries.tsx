@@ -181,58 +181,58 @@ function Countries() {
       </div>
 
       {/* Grid */}
-      <div>
-        {filteredCountries.length === 0 ? (
-          <div className="text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)]">
-            No countries found
-            {region !== "all" ? ` in ${region}` : ""} for “{query}”.
+{/* Grid */}
+<div>
+  {filteredCountries.length === 0 ? (
+    <div className="text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]">
+      No countries found
+      {region !== "all" ? ` in ${region}` : ""} for “{query}”.
+    </div>
+  ) : (
+    <div
+      className="grid gap-x-10 gap-y-[70px] 
+                 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+                 text-[var(--Grey-950-Light-Mode-Text)] dark:text-[var(--Dark-Mode-Text)]"
+    >
+      {filteredCountries.map((country) => (
+        <Link
+          key={country.cca3}
+          to={`/country/${country.cca3}`}
+          className="block"
+        >
+          <div className="rounded-lg overflow-hidden shadow-lg hover:scale-105 transition w-full bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)]">
+            <img
+              src={country.flags?.png || country.flags?.svg || ""}
+              alt={country.flags?.alt || `${country.name.common} flag`}
+              className="w-full h-[225px] md:h-[160px] object-cover"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+              }}
+            />
+            <div className="px-6 pt-6 pb-10">
+              <h3 className="text-lg mb-3">{country.name.common}</h3>
+              <p className="text-sm mb-1">
+                <b>Population:</b>{" "}
+                {Number.isFinite(country.population)
+                  ? country.population.toLocaleString()
+                  : "N/A"}
+              </p>
+              <p className="text-sm mb-1">
+                <b>Region:</b> {country.region || "N/A"}
+              </p>
+              {Array.isArray(country.capital) && country.capital.length > 0 && (
+                <p className="text-sm">
+                  <b>Capital:</b> {country.capital[0]}
+                </p>
+              )}
+            </div>
           </div>
-        ) : (
-          <div className="flex flex-wrap justify-between gap-x-10 gap-y-[70px] text-[var(--Grey-950-Light-Mode-Text)] dark:text[var(--Dark-Mode-Text)]">
-            {filteredCountries.map((country) => (
-              <Link
-                key={country.cca3}
-                to={`/country/${country.cca3}`}
-                className="block"
-              >
-                <div className="rounded-lg overflow-hidden shadow-lg hover:scale-105 transition w-100 md:w-[265px] bg-[var(--Light-Mode-Elements)] dark:bg-[var(--Blue-900-Dark-Mode-Elements)]">
-                  <img
-                    src={country.flags?.png || country.flags?.svg || ""}
-                    alt={
-                      country.flags?.alt || `${country.name.common} flag`
-                    }
-                    className="w-full h-[225px] md:h-[160px] object-cover"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                    }}
-                  />
-                  <div className="px-6 pt-6 pb-10">
-                    <h3 className="text-lg mb-3">
-                      {country.name.common}
-                    </h3>
-                    <p className="text-sm mb-1">
-                      <b>Population:</b>{" "}
-                      {Number.isFinite(country.population)
-                        ? country.population.toLocaleString()
-                        : "N/A"}
-                    </p>
-                    <p className="text-sm mb-1">
-                      <b>Region:</b> {country.region || "N/A"}
-                    </p>
-                    {Array.isArray(country.capital) &&
-                      country.capital.length > 0 && (
-                        <p className="text-sm">
-                          <b>Capital:</b> {country.capital[0]}
-                        </p>
-                      )}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
+        </Link>
+      ))}
+    </div>
+  )}
+</div>
+
     </>
   );
 }
