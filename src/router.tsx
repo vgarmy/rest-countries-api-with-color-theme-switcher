@@ -47,15 +47,19 @@ export async function countryLoader({ params }: LoaderFunctionArgs) {
   return { country, borderCountries };
 }
 
-// Skapa routern
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "*", // Parent path with '*' so child routes work correctly
+      element: <App />,
+      children: [
+        { index: true, element: <Countries />, loader: countriesLoader },
+        { path: "country/:code", element: <CountryPage />, loader: countryLoader },
+        { path: "*", element: <Countries />, loader: countriesLoader },
+      ],
+    },
+  ],
   {
-    path: "*", // Parent path med '*' för att barnrutter fungerar korrekt
-    element: <App />,
-    children: [
-      { index: true, element: <Countries />, loader: countriesLoader },
-      { path: "country/:code", element: <CountryPage />, loader: countryLoader },
-      { path: "*", element: <Countries />, loader: countriesLoader },
-    ],
-  },
-]);
+    basename: "/rest-countries-api-with-color-theme-switcher", // <-- GitHub Pages base path
+  }
+);
